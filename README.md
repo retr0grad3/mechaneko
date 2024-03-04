@@ -1,3 +1,3 @@
 # mechaneko
  Claw machine programming
- Developed by a bunch of high school students
+ developed by a bunch of high school students
