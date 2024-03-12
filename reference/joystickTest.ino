@@ -1,11 +1,19 @@
+/* 
+
+Credit to Maker Tutor on Youtube
+
+Simple serial output of joystick position
+
+*/
+
+// u51 d53 r49 l47
 int dirDown = 53;
 int dirUp = 51;
 int dirRight = 49;
 int dirLeft = 47;
-// u51 d53 r49 l47
-void setup() {
-  // put your setup code here, to run once:
 
+void setup() {
+  
   pinMode(dirDown, INPUT_PULLUP);
   pinMode(dirUp, INPUT_PULLUP);
   pinMode(dirLeft, INPUT_PULLUP);
@@ -15,8 +23,7 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  
   if(digitalRead(dirDown) == LOW){
     Serial.println("DOWN");
   } else if(digitalRead(dirUp) == LOW){
