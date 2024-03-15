@@ -26,7 +26,6 @@ const int joystickLeft = 4;
 // Input: buttons
 const int buttonDive = 5;
 const int buttonStart = 6;
-    // ** TO-DO: How to use button lights?!?!?!?!?!?!
 int buttonStateDive = HIGH;
 int buttonStateStart = HIGH;
 
@@ -52,7 +51,7 @@ int val;
 unsigned int timelimit = 5; // controls play time
 
 void setup() {
-    setTime(01,01,00,9,9,1999); // (Hour, minute, second, day, month, year)
+    setTime(01, 01, 00, 9, 9, 1999); // (Hour, minute, second, day, month, year)
     
     // Configure pinouts
     // pinMode() for all 4 axes of joystick
