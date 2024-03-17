@@ -52,21 +52,25 @@ void loop(){
         digitalWrite(in2, LOW); // REVERSE OFF
         digitalWrite(enA, 255); // SPEED MAX
         Serial.println("DOWN");
+
     } else if(digitalRead(dirDown) == LOW){
         digitalWrite(in1, LOW); // MOTOR 1/X FORWARD OFF
         digitalWrite(in2, HIGH); // REVERSE ON
         digitalWrite(enA, 255); // SPEED MAX
         Serial.println("UP");
+
     } else if(digitalRead(dirLeft) == LOW){
         digitalWrite(in3, HIGH); // MOTOR 2/Y FORWARD ON
         digitalWrite(in4, LOW); // REVERSE OFF
         digitalWrite(enB, 255); // SPEED MAX
         Serial.println("LEFT");
+
     } else if(digitalRead(dirRight) == LOW){
         digitalWrite(in3, LOW); // MOTOR 2/Y FORWARD OFF
         digitalWrite(in4, HIGH); // REVERSE ON
         digitalWrite(enB, 255); // SPEED MAX
         Serial.println("RIGHT");
+
     } else {
         digitalWrite(in1, LOW); // MOTOR 1/X FORWARD OFF
         digitalWrite(in2, LOW); // REVERSE OFF
@@ -78,6 +82,7 @@ void loop(){
 
         Serial.println("CENTER");
         delay(100);
+        
     }
 
 }
