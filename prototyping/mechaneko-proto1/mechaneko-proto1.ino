@@ -54,7 +54,7 @@ void setup() {
     setTime(01, 01, 00, 9, 9, 1999); // (Hour, minute, second, day, month, year)
     
     // Configure pinouts
-    // pinMode() for all 4 axes of joystick
+    // *pinMode() for all 4 axes of joystick
     pinMode(buttonDive, INPUT);
     pinMode(buttonStart, INPUT);
 
@@ -93,8 +93,8 @@ void loop() {
 
     // Credit accepted ==================================================================
 
-    // insert RFID card logic here; use do/while
-    // do [if blah blah blah wipe screen and print "credit: 1" "push start to begin" and turn on led???
+    // *insert RFID card logic here; use do/while
+    // *do [if blah blah blah wipe screen and print "credit: 1" "push start to begin" and turn on led???
     // wait for start]
 
     /*
@@ -106,19 +106,19 @@ void loop() {
 }
 
 void runGame(){
-    // turn off blinking start button
+    // *turn off blinking start button
     setTime(01, 01, 00, 9, 9, 1999); // reset time to validate gameplay
-    // wipe screen
+    // *wipe screen
     digitalWrite(servoPower, HIGH); // enable the servo
 
     // Start gameplay
     while(second() < timelimit && year() == 1999){
-        // print time limit on screen
+        // *print time limit on screen
 
-        // uhh figure out how the motors work
-        // yeah this is all just stepper motor stuff i don't know how it works
+        // *uhh figure out how the motors work
+        // *yeah this is all just stepper motor stuff i don't know how it works
 
-        // Servo control
+        // *Servo control
         // ... this literally maps a potentiometer to the fucking servo value this shit is pissing me off
     }
 }
