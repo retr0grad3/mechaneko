@@ -44,7 +44,7 @@ void setup(){
 
 void loop(){
   
-    // Motor 1 (in1, in2, enA) = x axis
+    // Motor 1 (in1, in2, enA) = X axis
     // Motor 2 (in3, in4, enB) = Y axis
 
     if(digitalRead(dirUp) == LOW){
