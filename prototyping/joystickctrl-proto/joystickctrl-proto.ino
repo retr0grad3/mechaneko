@@ -18,7 +18,7 @@ int enB = 50; // Speed control, 0-255
 int dirDown = 53;
 int dirUp = 51;
 int dirRight = 47;
-int dirLeft = 49;
+int dirLeft = 49; // hello
 
 void setup(){
     
