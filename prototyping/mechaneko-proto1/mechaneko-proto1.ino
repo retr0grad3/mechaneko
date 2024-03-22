@@ -14,6 +14,13 @@ mechaneko.carrd.co
 // Include header files
 #include <Time.h>
 #include <Servo.h>
+#include <FastLED.h>
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <SPI.h>
+#include <MFRC522.h>
 
 /* 
  * Set pinout values
@@ -73,6 +80,7 @@ int motor4Speed = 40; // Speed control, 0-255
 // MOSI ------> 51
 // MISO ------> 50
 // SCK  ------> 52
+
 /* 
  * Set pinout values
  * -----------------------------------------------------------------------------------------
@@ -192,18 +200,15 @@ void loop() {
     if(currentMillis - previousMillis > intervalIdle){
         previousMillis = currentMillis;
 
-        if(y == 0){
-            y = y + 1; // "add to the y cursor position"?????
-            x = x + 1;
-            // oled code; print GAME OVER then insert coins to play
-        } else {
-            // same thing?? wtf
-        }
+        // oled code; print GAME OVER then tap card to play
+
     }
     
     if(second() == timeLimit){
-            // time expired; release claw and turn off servo
-        }
+
+        // time expired; release claw and turn off servo
+
+    }
 
     // Credit accepted ==================================================================
 
@@ -227,13 +232,11 @@ void runGame(){
 
     // Start gameplay
     while(second() < timeLimit && year() == 1999){
-    while(second() < timeLimit && year() == 1999){
         // *print time limit on screen
 
         // *uhh figure out how the motors work
         // *yeah this is all just stepper motor stuff i don't know how it works
 
         // *Servo control
-        // ... this literally maps a potentiometer to the fucking servo value this shit is pissing me off
     }
 }
