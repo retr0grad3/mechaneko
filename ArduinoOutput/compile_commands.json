@@ -23,10 +23,10 @@
    "-DARDUINO_ARCH_AVR",
    "-IC:\\Users\\kebin\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\cores\\arduino",
    "-IC:\\Users\\kebin\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\variants\\mega",
-   "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\joystickctrl-proto.ino.cpp",
+   "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\motortest-proto.ino.cpp",
    "-o",
-   "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\joystickctrl-proto.ino.cpp.o"
+   "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\motortest-proto.ino.cpp.o"
   ],
-  "file": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\joystickctrl-proto.ino.cpp"
+  "file": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\motortest-proto.ino.cpp"
  }
 ]

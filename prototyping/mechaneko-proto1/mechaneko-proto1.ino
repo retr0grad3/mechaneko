@@ -73,14 +73,74 @@ int motor4Speed = 40; // Speed control, 0-255
 // MOSI ------> 51
 // MISO ------> 50
 // SCK  ------> 52
+/* 
+ * Set pinout values
+ * -----------------------------------------------------------------------------------------
+ * Joystick: 22-25; digital
+ * Button: 26; digital
+ * OLED: 8-12; PWM
+ * RGB strip: 7
+ * Motors: 29-40
+ * RFID: 5, 50-53
+ * Servo power: 6
+ * -----------------------------------------------------------------------------------------
+ */ 
+
+// Digital input: joystick
+const int joystickFwd = 22;
+const int joystickBck = 23;
+const int joystickRight = 24;
+const int joystickLeft = 25;
+
+// Digial input: buttons
+const int multiButton = 26;
+int multiButton = HIGH;
+
+// PWM output: OLED
+#define OLED_MOSI  11
+#define OLED_CLK   12
+#define OLED_DC    9
+#define OLED_CS    10
+#define OLED_RESET 8
+
+// Output: RGB strip
+#define DATA_PIN 6
+#define NUM_LEDS 10 // set to real value
+
+// Digital output: Motors
+// Motor 1 (Y axis; claw lift) pins
+int motor1Out1 = 29;
+int motor1Out2 = 30;
+int motor1Speed = 31; // Speed control, 0-255
+// Motor 2 (X axis; claw gantry) pins
+int motor2Out1 = 32;
+int motor2Out2 = 33;
+int motor2Speed = 34; // Speed control, 0-255
+// Motor 3 (Z axis; lower gantry) pins
+int motor3Out1 = 35;
+int motor3Out2 = 36;
+int motor3Speed = 37; // Speed control, 0-255
+// Motor 4 (Z axis; lower gantry) pins
+int motor4Out1 = 38;
+int motor4Out2 = 39;
+int motor4Speed = 40; // Speed control, 0-255
+
+// Digital input/output: RFID reader
+#define RST_PIN 5
+#define SS_PIN  53
+// MOSI ------> 51
+// MISO ------> 50
+// SCK  ------> 52
 
 // Output: power
+const int servoPower = 6;
 const int servoPower = 6;
 
 // Servo setup
 Servo clawServo;
 int val;
 
+unsigned int timeLimit = 5; // controls play time
 unsigned int timeLimit = 5; // controls play time
 
 void setup() {
@@ -113,6 +173,8 @@ void setup() {
     pinMode(servoPower, OUTPUT);
 
     // "enable internal pull ups," whatever that means; "note that all functioning logic must trigger low"
+    digitalWrite(multiButton, INPUT_PULLUP);
+    digitalWrite(servoPower, LOW); // default servo power to off
     digitalWrite(multiButton, INPUT_PULLUP);
     digitalWrite(servoPower, LOW); // default servo power to off
 
@@ -164,6 +226,7 @@ void runGame(){
     digitalWrite(servoPower, HIGH); // enable the servo
 
     // Start gameplay
+    while(second() < timeLimit && year() == 1999){
     while(second() < timeLimit && year() == 1999){
         // *print time limit on screen
 
