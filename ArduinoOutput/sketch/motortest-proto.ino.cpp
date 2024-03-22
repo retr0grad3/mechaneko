@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#line 1 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\motortest-proto\\motortest-proto.ino"
 int in1 = 42;
 int in2 = 44;
 int enA = 40;
@@ -6,6 +8,11 @@ int in3 = 46;
 int in4 = 48;
 int enB = 50;
 
+#line 9 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\motortest-proto\\motortest-proto.ino"
+void setup();
+#line 20 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\motortest-proto\\motortest-proto.ino"
+void loop();
+#line 9 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\motortest-proto\\motortest-proto.ino"
 void setup(){
     
   pinMode(enA, OUTPUT);

@@ -15,55 +15,90 @@ mechaneko.carrd.co
 #include <Time.h>
 #include <Servo.h>
 
-// Set pinout values
-// the reference code uses all buttons instead of joystick control
-    // ** TO-DO: How to use joystick?!?!?!
-// Input: joystick
-const int joystickFwd = 1;
-const int joystickBck = 2;
-const int joystickRight = 3;
-const int joystickLeft = 4;
-// Input: buttons
-const int buttonDive = 5;
-const int buttonStart = 6;
-int buttonStateDive = HIGH;
-int buttonStateStart = HIGH;
+/* 
+ * Set pinout values
+ * -----------------------------------------------------------------------------------------
+ * Joystick: 22-25; digital
+ * Button: 26; digital
+ * OLED: 8-12; PWM
+ * RGB strip: 7
+ * Motors: 29-40
+ * RFID: 5, 50-53
+ * Servo power: 6
+ * -----------------------------------------------------------------------------------------
+ */ 
+
+// Digital input: joystick
+const int joystickFwd = 22;
+const int joystickBck = 23;
+const int joystickRight = 24;
+const int joystickLeft = 25;
+
+// Digial input: buttons
+const int multiButton = 26;
+int multiButton = HIGH;
+
+// PWM output: OLED
+#define OLED_MOSI  11
+#define OLED_CLK   12
+#define OLED_DC    9
+#define OLED_CS    10
+#define OLED_RESET 8
+
+// Output: RGB strip
+#define DATA_PIN 6
+#define NUM_LEDS 10 // set to real value
+
+// Digital output: Motors
+// Motor 1 (Y axis; claw lift) pins
+int motor1Out1 = 29;
+int motor1Out2 = 30;
+int motor1Speed = 31; // Speed control, 0-255
+// Motor 2 (X axis; claw gantry) pins
+int motor2Out1 = 32;
+int motor2Out2 = 33;
+int motor2Speed = 34; // Speed control, 0-255
+// Motor 3 (Z axis; lower gantry) pins
+int motor3Out1 = 35;
+int motor3Out2 = 36;
+int motor3Speed = 37; // Speed control, 0-255
+// Motor 4 (Z axis; lower gantry) pins
+int motor4Out1 = 38;
+int motor4Out2 = 39;
+int motor4Speed = 40; // Speed control, 0-255
+
+// Digital input/output: RFID reader
+#define RST_PIN 5
+#define SS_PIN  53
+// MOSI ------> 51
+// MISO ------> 50
+// SCK  ------> 52
 
 // Output: power
-const int servoPower = 8;
-// Add LEDs?
-    // ** TO-DO: How to use OLED?!?!?!?!?!?!
-    // ** TO-DO: How to use motors?!?!?!?!?!?!??!!?!?!??!?!?!?!?!?!? Very IMPORTANT!!!!!!!!
-
-// Set time intervals
-long intervalStart = 500; // rate of blink for "insert coin" or "game over"
-long intervalIdle = 1000; // rate of blink for "push to start to begin"
-long previousMillis = 0;
-
-int y = 0; // wtf is this
-int x = 0;
+const int servoPower = 6;
 
 // Servo setup
 Servo clawServo;
-int potpin = 0; // POTENTIOMETER........................................
 int val;
 
-unsigned int timelimit = 5; // controls play time
+unsigned int timeLimit = 5; // controls play time
 
 void setup() {
     setTime(01, 01, 00, 9, 9, 1999); // (Hour, minute, second, day, month, year)
     
     // Configure pinouts
-    // *pinMode() for all 4 axes of joystick
-    pinMode(buttonDive, INPUT);
-    pinMode(buttonStart, INPUT);
+    pinMode(joystickFwd, INPUT_PULLUP);
+    pinMode(joystickBck, INPUT_PULLUP);
+    pinMode(joystickLeft, INPUT_PULLUP);
+    pinMode(joystickRight, INPUT_PULLUP);
+
+    pinMode(multiButton, INPUT);
 
     pinMode(servoPower, OUTPUT);
 
     // "enable internal pull ups," whatever that means; "note that all functioning logic must trigger low"
-    digitalWrite(buttonDive, INPUT_PULLUP);
-    digitalWrite(buttonStart, INPUT_PULLUP);
-    digitalWrite(servopower, LOW); // default servo power to off
+    digitalWrite(multiButton, INPUT_PULLUP);
+    digitalWrite(servoPower, LOW); // default servo power to off
 
     myServo.attach(9); // what the fuck does this do
 
@@ -112,7 +147,7 @@ void runGame(){
     digitalWrite(servoPower, HIGH); // enable the servo
 
     // Start gameplay
-    while(second() < timelimit && year() == 1999){
+    while(second() < timeLimit && year() == 1999){
         // *print time limit on screen
 
         // *uhh figure out how the motors work
