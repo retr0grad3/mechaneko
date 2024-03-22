@@ -15,6 +15,10 @@ int enA = 40; // Speed control, 0-255
 int in3 = 46;
 int in4 = 48;
 int enB = 50; // Speed control, 0-255
+// Motor 3 (Y axis) pins
+int in5 = 29;
+int in6 = 31;
+int enC = 27; // Speed control, 0-255
 
 // Joystick pins
 int dirDown = 51;
@@ -22,11 +26,11 @@ int dirUp = 53;
 int dirRight = 49;
 int dirLeft = 47;
 
-#line 23 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
+#line 27 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
 void setup();
-#line 45 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
+#line 49 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
 void loop();
-#line 23 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
+#line 27 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
 void setup(){
     
     // Motor 1 pin modes
@@ -73,9 +77,15 @@ void loop(){
         Serial.println("UP");
 
     } else if(digitalRead(dirLeft) == LOW){
+        digitalWrite(in5, HIGH); // MOTOR 2 FORWARD ON
+        digitalWrite(in6, LOW); // REVERSE OFF
+        digitalWrite(enC, 255); // SPEED MAX
         Serial.println("LEFT");
 
     } else if(digitalRead(dirRight) == LOW){
+        digitalWrite(in5, LOW); // MOTOR 2 FORWARD ON
+        digitalWrite(in6, HIGH); // REVERSE OFF
+        digitalWrite(enC, 255); // SPEED MAX
         Serial.println("RIGHT");
 
     } else {
@@ -86,6 +96,10 @@ void loop(){
         digitalWrite(in3, LOW); // MOTOR 2/Y FORWARD OFF
         digitalWrite(in4, LOW); // REVERSE OFF
         digitalWrite(enB, 0); // SPEED MIN
+
+        digitalWrite(in5, LOW); // MOTOR 2/Y FORWARD OFF
+        digitalWrite(in6, LOW); // REVERSE OFF
+        digitalWrite(enC, 0); // SPEED MIN
 
         Serial.println("CENTER");
         delay(100);

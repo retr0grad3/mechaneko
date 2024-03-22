@@ -1,7 +1,7 @@
 {
     "configuration": "cpu=atmega2560",
     "board": "arduino:avr:mega",
-    "port": "COM4",
+    "port": "COM3",
     "sketch": "prototyping\\joystickctrl-proto\\joystickctrl-proto.ino",
     "output": "ArduinoOutput"
 }
