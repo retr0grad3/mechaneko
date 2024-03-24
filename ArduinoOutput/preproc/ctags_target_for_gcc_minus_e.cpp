@@ -1,188 +1,133 @@
-# 1 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
-/* 
-
-
-
-Makes a group of motors move given a joystick's input
-
-
-
-*/
-# 8 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
-// Motor 1 (X axis) pins
-int in1 = 42;
-int in2 = 44;
-int enA = 40; // Speed control, 0-255
-// Motor 2 (Y axis) pins
-int in3 = 46;
-int in4 = 48;
-int enB = 50; // Speed control, 0-255
-// Motor 3 (Y axis) pins
-int in5 = 29;
-int in6 = 31;
-int enC = 27; // Speed control, 0-255
-
-// Joystick pins
-int dirDown = 51;
-int dirUp = 53;
-int dirRight = 49;
-int dirLeft = 47;
+# 1 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\test\\motortest\\motortest.ino"
+// Digital output: Motors
+// Motor 1 (Y axis; claw lift) pins
+int motor1Out1 = 29;
+int motor1Out2 = 30;
+int motor1Speed = 31; // Speed control, 0-255
+// Motor 2 (X axis; claw gantry) pins
+int motor2Out1 = 32;
+int motor2Out2 = 33;
+int motor2Speed = 34; // Speed control, 0-255
+// Motor 3 (Z axis; lower gantry) pins
+int motor3Out1 = 35;
+int motor3Out2 = 36;
+int motor3Speed = 37; // Speed control, 0-255
+// Motor 4 (Z axis; lower gantry) pins
+int motor4Out1 = 38;
+int motor4Out2 = 39;
+int motor4Speed = 40; // Speed control, 0-255
 
 void setup(){
 
-    // Motor 1 pin modes
-    pinMode(enA, 0x1);
-    pinMode(in1, 0x1);
-    pinMode(in2, 0x1);
-    // Motor 2 pin modes
-    pinMode(enB, 0x1);
-    pinMode(in3, 0x1);
-    pinMode(in4, 0x1);
-
-    // Joystick pin modes
-    pinMode(dirDown, 0x2);
-    pinMode(dirUp, 0x2);
-    pinMode(dirLeft, 0x2);
-    pinMode(dirRight, 0x2);
-
-    // Set up serial output
-    Serial.begin(9600);
+  // Motor 1 (Y axis; claw lift) pins
+  pinMode(motor1Out1, 0x1);
+  pinMode(motor1Out2, 0x1);
+  pinMode(motor1Speed, 0x1); // Speed control, 0-255
+  // Motor 2 (X axis; claw gantry) pins
+  pinMode(motor2Out1, 0x1);
+  pinMode(motor2Out2, 0x1);
+  pinMode(motor2Speed, 0x1); // Speed control, 0-255
+  // Motor 3 (Z axis; lower gantry) pins
+  pinMode(motor3Out1, 0x1);
+  pinMode(motor3Out2, 0x1);
+  pinMode(motor3Speed, 0x1); // Speed control, 0-255
+  // Motor 4 (Z axis; lower gantry) pins
+  pinMode(motor4Out1, 0x1);
+  pinMode(motor4Out2, 0x1);
+  pinMode(motor4Speed, 0x1); // Speed control, 0-255
 
 }
 
 void loop(){
 
-    // Motor 1 (in1, in2, enA) = X axis
-    // Motor 2 (in3, in4, enB) = Y axis
+  digitalWrite(motor1Out1, 0x1); // move forward for 1.5s
+  digitalWrite(motor1Out2, 0x0);
+  digitalWrite(motor2Out1, 0x0);
+  digitalWrite(motor2Out2, 0x1);
+  digitalWrite(motor1Speed, 255);
+  digitalWrite(motor2Speed, 255);
 
-    if(digitalRead(dirUp) == 0x0){
-        digitalWrite(in1, 0x1); // MOTOR 1 FORWARD ON
-        digitalWrite(in2, 0x0); // REVERSE OFF
-        digitalWrite(enA, 255); // SPEED MAX
-        digitalWrite(in3, 0x0); // MOTOR 2 FORWARD OFF (must be opposite)
-        digitalWrite(in4, 0x1); // REVERSE OFF
-        digitalWrite(enB, 255); // SPEED MAX
-        Serial.println("DOWN");
+  digitalWrite(motor3Out1, 0x1);
+  digitalWrite(motor3Out2, 0x0);
+  digitalWrite(motor4Out1, 0x1);
+  digitalWrite(motor4Out2, 0x0);
+  digitalWrite(motor3Speed, 255);
+  digitalWrite(motor4Speed, 255);
+  delay(1500);
 
-    } else if(digitalRead(dirDown) == 0x0){
-        digitalWrite(in1, 0x0); // MOTOR 1 FORWARD OFF
-        digitalWrite(in2, 0x1); // REVERSE ON
-        digitalWrite(enA, 255); // SPEED MAX
-        digitalWrite(in3, 0x1); // MOTOR 2 FORWARD ON
-        digitalWrite(in4, 0x0); // REVERSE OFF
-        digitalWrite(enB, 255); // SPEED MAX
-        Serial.println("UP");
+  digitalWrite(motor1Out1, 0x0); // stop for 0.5s
+  digitalWrite(motor1Out2, 0x0);
+  digitalWrite(motor2Out1, 0x0);
+  digitalWrite(motor2Out2, 0x0);
+  digitalWrite(motor1Speed, 0);
+  digitalWrite(motor2Speed, 0);
 
-    } else if(digitalRead(dirLeft) == 0x0){
-        digitalWrite(in5, 0x1); // MOTOR 2 FORWARD ON
-        digitalWrite(in6, 0x0); // REVERSE OFF
-        digitalWrite(enC, 255); // SPEED MAX
-        Serial.println("LEFT");
+  digitalWrite(motor3Out1, 0x0);
+  digitalWrite(motor3Out2, 0x0);
+  digitalWrite(motor4Out1, 0x0);
+  digitalWrite(motor4Out2, 0x0);
+  digitalWrite(motor3Speed, 0);
+  digitalWrite(motor4Speed, 0);
+  delay(500);
 
-    } else if(digitalRead(dirRight) == 0x0){
-        digitalWrite(in5, 0x0); // MOTOR 2 FORWARD ON
-        digitalWrite(in6, 0x1); // REVERSE OFF
-        digitalWrite(enC, 255); // SPEED MAX
-        Serial.println("RIGHT");
+  digitalWrite(motor1Out1, 0x0); // move reverse for 1.5s
+  digitalWrite(motor1Out2, 0x1);
+  digitalWrite(motor2Out1, 0x1);
+  digitalWrite(motor2Out2, 0x0);
+  digitalWrite(motor1Speed, 255);
+  digitalWrite(motor2Speed, 255);
 
-    } else {
-        digitalWrite(in1, 0x0); // MOTOR 1/X FORWARD OFF
-        digitalWrite(in2, 0x0); // REVERSE OFF
-        digitalWrite(enA, 0); // SPEED MIN
+  digitalWrite(motor3Out1, 0x0);
+  digitalWrite(motor3Out2, 0x1);
+  digitalWrite(motor4Out1, 0x0);
+  digitalWrite(motor4Out2, 0x1);
+  digitalWrite(motor3Speed, 255);
+  digitalWrite(motor4Speed, 255);
+  delay(1500);
 
-        digitalWrite(in3, 0x0); // MOTOR 2/Y FORWARD OFF
-        digitalWrite(in4, 0x0); // REVERSE OFF
-        digitalWrite(enB, 0); // SPEED MIN
+  digitalWrite(motor1Out1, 0x0); // stop for 0.5s
+  digitalWrite(motor1Out2, 0x0);
+  digitalWrite(motor2Out1, 0x0);
+  digitalWrite(motor2Out2, 0x0);
+  digitalWrite(motor1Speed, 0);
+  digitalWrite(motor2Speed, 0);
 
-        digitalWrite(in5, 0x0); // MOTOR 2/Y FORWARD OFF
-        digitalWrite(in6, 0x0); // REVERSE OFF
-        digitalWrite(enC, 0); // SPEED MIN
+  digitalWrite(motor3Out1, 0x0);
+  digitalWrite(motor3Out2, 0x0);
+  digitalWrite(motor4Out1, 0x0);
+  digitalWrite(motor4Out2, 0x0);
+  digitalWrite(motor3Speed, 0);
+  digitalWrite(motor4Speed, 0);
+  delay(500);
 
-        Serial.println("CENTER");
-        delay(100);
+  /*
 
-    }
+  digitalWrite(in1, HIGH);
 
-    /*
-
-
-
-    if(digitalRead(dirUp) == LOW){
-
-        digitalWrite(in1, HIGH); // MOTOR 1/X FORWARD ON
-
-        digitalWrite(in2, LOW); // REVERSE OFF
-
-        digitalWrite(enA, 255); // SPEED MAX
-
-        Serial.println("DOWN");
-
-
-
-    } else if(digitalRead(dirDown) == LOW){
-
-        digitalWrite(in1, LOW); // MOTOR 1/X FORWARD OFF
-
-        digitalWrite(in2, HIGH); // REVERSE ON
-
-        digitalWrite(enA, 255); // SPEED MAX
-
-        Serial.println("UP");
+  digitalWrite(in2, LOW);
 
 
 
-    } else if(digitalRead(dirLeft) == LOW){
+  digitalWrite(in3, HIGH);
 
-        digitalWrite(in3, HIGH); // MOTOR 2/Y FORWARD ON
+  digitalWrite(in4, LOW);
 
-        digitalWrite(in4, LOW); // REVERSE OFF
-
-        digitalWrite(enB, 255); // SPEED MAX
-
-        Serial.println("LEFT");
+  delay(3000);
 
 
 
-    } else if(digitalRead(dirRight) == LOW){
+  digitalWrite(in1, LOW);
 
-        digitalWrite(in3, LOW); // MOTOR 2/Y FORWARD OFF
-
-        digitalWrite(in4, HIGH); // REVERSE ON
-
-        digitalWrite(enB, 255); // SPEED MAX
-
-        Serial.println("RIGHT");
+  digitalWrite(in2, HIGH);
 
 
 
-    } else {
+  digitalWrite(in3, LOW);
 
-        digitalWrite(in1, LOW); // MOTOR 1/X FORWARD OFF
+  digitalWrite(in4, HIGH);
 
-        digitalWrite(in2, LOW); // REVERSE OFF
+  delay(3000);
 
-        digitalWrite(enA, 0); // SPEED MIN
-
-
-
-        digitalWrite(in3, LOW); // MOTOR 2/Y FORWARD OFF
-
-        digitalWrite(in4, LOW); // REVERSE OFF
-
-        digitalWrite(enB, 0); // SPEED MIN
-
-
-
-        Serial.println("CENTER");
-
-        delay(100);
-
-        
-
-    }
-
-
-
-    */
-# 144 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\prototyping\\joystickctrl-proto\\joystickctrl-proto.ino"
+  */
+# 117 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\test\\motortest\\motortest.ino"
 }
