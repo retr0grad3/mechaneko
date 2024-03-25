@@ -161,6 +161,42 @@ void loop() {
     if(currentMillis - previousMillis > intervalIdle){
         previousMillis = currentMillis;
 
+        display.clearDisplay();
+        display.setTextSize(2);             // Normal 1:1 pixel scale
+        display.setCursor(14,24);    
+        display.setTextColor(SSD1306_BLACK, SSD1306_WHITE); // Draw 'inverse' text
+        display.println("GAME OVER");
+        display.display();
+
+        delay(1000);
+
+        display.clearDisplay();
+        display.setTextSize(2);             // Normal 1:1 pixel scale
+        display.setCursor(14,24);    
+        display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
+        display.println("GAME OVER");
+        display.display();
+
+        delay(1000);
+
+        display.clearDisplay();
+        display.setTextSize(2);             // Normal 1:1 pixel scale
+        display.setCursor(14,24);    
+        display.setTextColor(SSD1306_BLACK, SSD1306_WHITE); // Draw 'inverse' text
+        display.println("Tap card to play");
+        display.display();
+
+        delay(1000);
+
+        display.clearDisplay();
+        display.setTextSize(2);             // Normal 1:1 pixel scale
+        display.setCursor(14,24);    
+        display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
+        display.println("Tap card to play");
+        display.display();
+
+        delay(1000);
+
         runGame();
         returnToHome();
 
@@ -308,7 +344,29 @@ void inGameTimer(){
         if(continueGame == 0){
             break;
         }
-  }
+    }
+}
+
+void timesUp(){
+    for (int i = 0; i < 4; i++) {
+        display.clearDisplay();
+        display.setTextSize(2);             // Normal 1:1 pixel scale
+        display.setCursor(14,24);    
+        display.setTextColor(SSD1306_BLACK, SSD1306_WHITE); // Draw 'inverse' text
+        display.println("Time's Up");
+        display.display();
+
+        delay(1000);
+
+        display.clearDisplay();
+        display.setTextSize(2);             // Normal 1:1 pixel scale
+        display.setCursor(14,24);    
+        display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
+        display.println("Time's Up");
+        display.display();
+
+        delay(1000);
+    }
 }
 
 void returnToHome(){
