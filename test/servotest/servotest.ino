@@ -12,17 +12,17 @@
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 
-int pos = 0;    // variable to store the servo position
+int pos = 105;    // variable to store the servo position
 
 void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.attach(6);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop() {
   myservo.write(pos);              // tell servo to go to position in variable 'pos'
   delay(5000);
-  pos -= 90;
+  pos -= 50;
   myservo.write(pos);
   delay (5000);
-  pos += 90;
+  pos += 50;
 }

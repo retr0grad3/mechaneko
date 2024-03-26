@@ -1,7 +1,7 @@
 #include <FastLED.h>
 
-#define DATA_PIN 6
-#define NUM_LEDS 10
+#define DATA_PIN 7
+#define NUM_LEDS 47
 
 CRGB leds[NUM_LEDS];
 
@@ -10,18 +10,19 @@ void setup() {
 }
 
 void loop() {
-  // Set all LEDs to red
-  fill_solid(leds, NUM_LEDS, CRGB::Red);
+  // Set all LEDs to MECHA PINK
+  fill_solid(leds, NUM_LEDS, CRGB::CRGB(255, 110, 188));
   FastLED.show();
   delay(1000);
 
-  // Set all LEDs to green
-  fill_solid(leds, NUM_LEDS, CRGB::Green);
+  // Set all LEDs to BABY BLUE
+  fill_solid(leds, NUM_LEDS, CRGB::CRGB(109, 163, 103));
+  FastLED.show();
+  delay(1000);
+  
+  // Set all LEDs to AZUMI PURPLE
+  fill_solid(leds, NUM_LEDS, CRGB::CRGB(167, 75, 208));
   FastLED.show();
   delay(1000);
 
-  // Set all LEDs to blue
-  fill_solid(leds, NUM_LEDS, CRGB::Blue);
-  FastLED.show();
-  delay(1000);
 }

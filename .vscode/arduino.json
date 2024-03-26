@@ -2,6 +2,6 @@
     "configuration": "cpu=atmega2560",
     "board": "arduino:avr:mega",
     "port": "COM3",
-    "sketch": "test\\motortest\\motortest.ino",
+    "sketch": "final\\cardless-final\\cardless-final.ino",
     "output": "ArduinoOutput"
 }

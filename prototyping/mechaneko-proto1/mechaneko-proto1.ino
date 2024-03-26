@@ -93,7 +93,7 @@ const int xLimit = 3;
 const int zLimit = 4;
 
 // Output: power
-const int servoPower = 6;
+const int servoPower = 6; // closed = 105; open = 55
 
 // Servo setup
 Servo clawServo;
@@ -246,10 +246,6 @@ void runGame(){
             break;
         }
 
-        digitalWrite(motor1Out1, HIGH);
-        digitalWrite(motor1Out2, LOW);
-        digitalWrite(motor1Speed, 255);
-
         Serial.println("CLAW GOING DOWN");
         delay(1000);
     }
@@ -286,6 +282,58 @@ void joystickCtrl(){
         digitalWrite(motor2Out2, LOW); // REVERSE ON
         digitalWrite(motor2Speed, 255); // SPEED MAX
         Serial.println("RIGHT");
+
+    } else if(digitalRead(joystickFwd) == LOW && digitalRead(joystickLeft) == LOW){
+        digitalWrite(motor3Out1, HIGH); // MOTOR 1 FORWARD ON
+        digitalWrite(motor3Out2, LOW); // REVERSE OFF
+        digitalWrite(motor3Speed, 255); // SPEED MAX
+        digitalWrite(motor4Out1, LOW); // MOTOR 2 FORWARD OFF (must be opposite)
+        digitalWrite(motor4Out2, HIGH); // REVERSE OFF
+        digitalWrite(motor4Speed, 255); // SPEED MAX
+
+        digitalWrite(motor2Out1, LOW); // MOTOR 1 FORWARD OFF
+        digitalWrite(motor2Out2, HIGH); // REVERSE ON
+        digitalWrite(motor2Speed, 255); // SPEED MAX
+        Serial.println("UP LEFT");
+
+    } else if(digitalRead(joystickFwd) == LOW && digitalRead(joystickRight) == LOW){
+        digitalWrite(motor3Out1, HIGH); // MOTOR 1 FORWARD ON
+        digitalWrite(motor3Out2, LOW); // REVERSE OFF
+        digitalWrite(motor3Speed, 255); // SPEED MAX
+        digitalWrite(motor4Out1, LOW); // MOTOR 2 FORWARD OFF (must be opposite)
+        digitalWrite(motor4Out2, HIGH); // REVERSE OFF
+        digitalWrite(motor4Speed, 255); // SPEED MAX
+
+        digitalWrite(motor2Out1, HIGH); // MOTOR 1 FORWARD OFF
+        digitalWrite(motor2Out2, LOW); // REVERSE ON
+        digitalWrite(motor2Speed, 255); // SPEED MAX
+        Serial.println("UP RIGHT");
+
+    } else if(digitalRead(joystickBck) == LOW && digitalRead(joystickLeft) == LOW){
+        digitalWrite(motor3Out1, LOW); // MOTOR 1 FORWARD OFF
+        digitalWrite(motor3Out2, HIGH); // REVERSE ON
+        digitalWrite(motor3Speed, 255); // SPEED MAX
+        digitalWrite(motor4Out1, HIGH); // MOTOR 2 FORWARD ON
+        digitalWrite(motor4Out2, LOW); // REVERSE OFF
+        digitalWrite(motor4Speed, 255); // SPEED MAX
+
+        digitalWrite(motor2Out1, LOW); // MOTOR 1 FORWARD OFF
+        digitalWrite(motor2Out2, HIGH); // REVERSE ON
+        digitalWrite(motor2Speed, 255); // SPEED MAX
+        Serial.println("UP LEFT");
+
+    } else if(digitalRead(joystickBck) == LOW && digitalRead(joystickRight) == LOW){
+        digitalWrite(motor3Out1, LOW); // MOTOR 1 FORWARD OFF
+        digitalWrite(motor3Out2, HIGH); // REVERSE ON
+        digitalWrite(motor3Speed, 255); // SPEED MAX
+        digitalWrite(motor4Out1, HIGH); // MOTOR 2 FORWARD ON
+        digitalWrite(motor4Out2, LOW); // REVERSE OFF
+        digitalWrite(motor4Speed, 255); // SPEED MAX
+
+        digitalWrite(motor2Out1, HIGH); // MOTOR 1 FORWARD OFF
+        digitalWrite(motor2Out2, LOW); // REVERSE ON
+        digitalWrite(motor2Speed, 255); // SPEED MAX
+        Serial.println("UP RIGHT");
 
     } else {
         digitalWrite(motor2Out1, LOW); // MOTOR 1/X FORWARD OFF

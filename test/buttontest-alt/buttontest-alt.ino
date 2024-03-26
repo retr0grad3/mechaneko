@@ -13,10 +13,7 @@ const int multiButton = 49;
 int motorPos = 0;
 bool upStroke = 0;
 Servo clawServo;
-int pos;
-
-const int lowerHome = 1 * 1000;
-const int upperHome = 0;
+int pos = 0;
 
 void setup(){
     // Motor 4 pin modes
@@ -29,6 +26,9 @@ void setup(){
     pinMode(multiButton, INPUT);
     digitalWrite(multiButton, INPUT_PULLUP);
     digitalWrite(servoPower, HIGH);
+
+    clawServo.attach(6);
+    clawServo.write(105);
 
     Serial.begin(9600);
 }
@@ -45,19 +45,31 @@ void loop(){
 
 void lowerClaw(){
     Serial.println("CLAW OPENING");
-    clawServo.write(25);
+    clawServo.write(55);
     Serial.println("GOING DOWN");
     digitalWrite(in7, HIGH); 
     digitalWrite(in8, LOW);
     digitalWrite(enD, 255); 
-    delay(3000);
+    delay(2200);
+
+    Serial.println("STOPPING AT BOTTOM");
+    digitalWrite(in7, LOW); 
+    digitalWrite(in8, LOW);
+    digitalWrite(enD, 0); 
+    delay(1000);
 
     Serial.println("CLAW CLOSING");
-    clawServo.write(160);
-    delay(750);
+    clawServo.write(105);
+    delay(1000);
+
     Serial.println("GOING UP");
     digitalWrite(in7, LOW); 
     digitalWrite(in8, HIGH);
     digitalWrite(enD, 255); 
-    delay(3000);
+    delay(2500);
+
+    Serial.println("STOPPING AT TOP");
+    digitalWrite(in7, LOW); 
+    digitalWrite(in8, LOW);
+    digitalWrite(enD, 0); 
 }
