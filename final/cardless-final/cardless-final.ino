@@ -1,3 +1,15 @@
+
+/*
+
+Claw machine designed by MECHANEKO.
+6-axis movement, no diagonal movement of the gantry (which uses "yellow gearbox" motors).
+Uses RFID cards in lieu of coins (feature unavailable). 
+
+(c) 2024 Kevin Takamura, MECHANEKO
+mechaneko.carrd.co
+
+*/
+
 #include <Servo.h>
 #include <FastLED.h>
 #include <SPI.h>
