@@ -10,82 +10,37 @@
     "Includepath": "C:\\Users\\kebin\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\variants\\mega"
   },
   {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\cardless-final.ino.cpp",
-    "Include": "Servo.h",
-    "Includepath": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src"
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\cardless-final.ino.cpp",
+    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\outofservice-final.ino.cpp",
     "Include": "FastLED.h",
     "Includepath": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\FastLED\\src"
   },
   {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\cardless-final.ino.cpp",
+    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\outofservice-final.ino.cpp",
     "Include": "SPI.h",
     "Includepath": "C:\\Users\\kebin\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\SPI\\src"
   },
   {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\cardless-final.ino.cpp",
+    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\outofservice-final.ino.cpp",
     "Include": "Wire.h",
     "Includepath": "C:\\Users\\kebin\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\Wire\\src"
   },
   {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\cardless-final.ino.cpp",
+    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\outofservice-final.ino.cpp",
     "Include": "Adafruit_GFX.h",
     "Includepath": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Adafruit_GFX_Library"
   },
   {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\cardless-final.ino.cpp",
+    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\outofservice-final.ino.cpp",
     "Include": "Adafruit_I2CDevice.h",
     "Includepath": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Adafruit_BusIO"
   },
   {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\cardless-final.ino.cpp",
+    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\outofservice-final.ino.cpp",
     "Include": "Adafruit_SSD1306.h",
     "Includepath": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Adafruit_SSD1306"
   },
   {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\cardless-final.ino.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src\\avr\\Servo.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src\\mbed\\Servo.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src\\megaavr\\Servo.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src\\nrf52\\Servo.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src\\renesas\\Servo.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src\\sam\\Servo.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src\\samd\\Servo.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "C:\\Users\\kebin\\Documents\\Arduino\\libraries\\Servo\\src\\stm32f4\\Servo.cpp",
+    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\outofservice-final.ino.cpp",
     "Include": "",
     "Includepath": null
   },

@@ -74,7 +74,7 @@ void setup(){
 
     display.clearDisplay();
     display.setTextSize(2);             // Normal 1:1 pixel scale
-    display.setCursor(14,24);    
+    display.setCursor(12,22);    
     display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
     display.println("MECHANEKO");
     display.display();

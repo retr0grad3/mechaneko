@@ -1,7 +1,7 @@
 {
     "configuration": "cpu=atmega2560",
     "board": "arduino:avr:mega",
-    "port": "COM3",
-    "sketch": "final\\cardless-final\\cardless-final.ino",
+    "port": "COM4",
+    "sketch": "final\\outofservice-final\\outofservice-final.ino",
     "output": "ArduinoOutput"
 }
