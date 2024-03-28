@@ -1,82 +1,63 @@
-# 1 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino"
+# 1 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\test\\hometest\\hometest.ino"
+void returnToHome();
 
-/*
+// Motor 2 (X axis; claw gantry) pins
+int motor2Out1 = 32;
+int motor2Out2 = 33;
+int motor2Speed = 34; // Speed control, 0-255
+// Motor 3 (Z axis; lower gantry) pins
+int motor3Out1 = 35;
+int motor3Out2 = 36;
+int motor3Speed = 37; // Speed control, 0-255
+// Motor 4 (Z axis; lower gantry) pins
+int motor4Out1 = 38;
+int motor4Out2 = 39;
+int motor4Speed = 40; // Speed control, 0-255
 
-
-
-Claw machine designed by MECHANEKO.
-
-6-axis movement, no diagonal movement of the gantry (which uses "yellow gearbox" motors).
-
-Uses RFID cards in lieu of coins (feature unavailable). 
-
-
-
-(c) 2024 Kevin Takamura, MECHANEKO
-
-mechaneko.carrd.co
-
-
-
-*/
-# 13 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino"
-# 14 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino" 2
-# 15 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino" 2
-# 16 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino" 2
-# 17 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino" 2
-# 18 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino" 2
-
-// PWM output: OLED
-
-
-
-
-
-
-
-Adafruit_SSD1306 display(128 /* OLED display width, in pixels*/, 64 /* OLED display height, in pixels*/,
-  11 /* SDA*/, 12 /* SCK*/, 9, 8 /* RST*/, 10);
-
-// Output: RGB strip
-
-
-CRGB leds[47];
+// PWM input: Limit switches
+const int xLimit = 3;
+const int zLimit = 4;
 
 void setup(){
-    // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-    if(!display.begin(0x02 /*|< Gen. display voltage from 3.3V*/)) {
-        Serial.println((reinterpret_cast<const __FlashStringHelper *>(
-# 38 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino" 3
-                      (__extension__({static const char __c[] __attribute__((__progmem__)) = (
-# 38 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino"
-                      "SSD1306 allocation failed"
-# 38 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino" 3
-                      ); &__c[0];}))
-# 38 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino"
-                      )));
-        for(;;); // Don't proceed, loop forever
-    }
+    // Motor 2 (X axis; claw gantry) pins
+    pinMode(motor2Out1, 0x1);
+    pinMode(motor2Out2, 0x1);
+    pinMode(motor2Speed, 0x1); // Speed control, 0-255
+    // Motor 3 (Z axis; lower gantry) pins
+    pinMode(motor3Out1, 0x1);
+    pinMode(motor3Out2, 0x1);
+    pinMode(motor3Speed, 0x1); // Speed control, 0-255
+    // Motor 4 (Z axis; lower gantry) pins
+    pinMode(motor4Out1, 0x1);
+    pinMode(motor4Out2, 0x1);
+    pinMode(motor4Speed, 0x1); // Speed control, 0-255
 
-    display.clearDisplay();
-    display.setTextSize(2);
-    display.setCursor(12, 22);
-    display.setTextColor(1 /*|< Draw 'on' pixels*/);
-    display.println("MECHANEKO");
-    display.setTextSize(1);
-    display.setCursor(14, 44);
-    display.setTextColor(1 /*|< Draw 'on' pixels*/); // Draw 'inverse' text
-    display.println("OUT OF SERVICE :(");
-    display.display();
-
-    FastLED.addLeds<NEOPIXEL, 7>(leds, 47);
-
-    fill_solid(leds, 47, CRGB::CRGB(167, 75, 208));
-    FastLED.show();
-
-    Serial.begin(9600);
-
+    pinMode(xLimit, 0x0);
+    pinMode(zLimit, 0x0);
 }
 
 void loop(){
+    returnToHome();
+}
 
+void returnToHome(){
+    while(digitalRead(xLimit) == 0x1 || digitalRead(zLimit) == 0x1){
+        if(digitalRead(xLimit) == 0x1){
+            digitalWrite(motor3Out1, 0x0); // MOTOR 1 FORWARD OFF
+            digitalWrite(motor3Out2, 0x1); // REVERSE ON
+            digitalWrite(motor3Speed, 255); // SPEED MAX
+            digitalWrite(motor4Out1, 0x1); // MOTOR 2 FORWARD ON
+            digitalWrite(motor4Out2, 0x0); // REVERSE OFF
+            digitalWrite(motor4Speed, 255); // SPEED MAX
+            Serial.println("RETURNING TO Z HOME");
+        }
+        if(digitalRead(zLimit) == 0x1){
+            digitalWrite(motor2Out1, 0x0); // MOTOR 1 FORWARD OFF
+            digitalWrite(motor2Out2, 0x1); // REVERSE ON
+            digitalWrite(motor2Speed, 255); // SPEED MAX
+            Serial.println("RETURNING TO X HOME");
+        }
+    }
+
+    Serial.println("WELCOME HOME");
 }
