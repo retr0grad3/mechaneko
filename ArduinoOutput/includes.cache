@@ -10,6 +10,7 @@
     "Includepath": "C:\\Users\\kevi1\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\variants\\mega"
   },
   {
+<<<<<<< HEAD
     "Sourcefile": "C:\\Users\\kevi1\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\full-final.ino.cpp",
     "Include": "TimeLib.h",
     "Includepath": "C:\\Users\\kevi1\\Documents\\Arduino\\libraries\\Time"
@@ -226,6 +227,9 @@
   },
   {
     "Sourcefile": "C:\\Users\\kevi1\\Documents\\Arduino\\libraries\\MFRC522\\src\\MFRC522Extended.cpp",
+=======
+    "Sourcefile": "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\ArduinoOutput\\sketch\\hometest.ino.cpp",
+>>>>>>> 842c6766ff0c1834fe4a9ceab3010c9ede4960b6
     "Include": "",
     "Includepath": null
   }

@@ -1,7 +1,24 @@
+<<<<<<< HEAD
 # 1 "C:\\Users\\kevi1\\Documents\\GitHub\\mechaneko\\final\\full-final\\full-final.ino"
+=======
+# 1 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\test\\hometest\\hometest.ino"
+void returnToHome();
+>>>>>>> 842c6766ff0c1834fe4a9ceab3010c9ede4960b6
 
-/*
+// Motor 2 (X axis; claw gantry) pins
+int motor2Out1 = 32;
+int motor2Out2 = 33;
+int motor2Speed = 34; // Speed control, 0-255
+// Motor 3 (Z axis; lower gantry) pins
+int motor3Out1 = 35;
+int motor3Out2 = 36;
+int motor3Speed = 37; // Speed control, 0-255
+// Motor 4 (Z axis; lower gantry) pins
+int motor4Out1 = 38;
+int motor4Out2 = 39;
+int motor4Speed = 40; // Speed control, 0-255
 
+<<<<<<< HEAD
 
 
 Claw machine designed by MECHANEKO.
@@ -79,6 +96,11 @@ Adafruit_SSD1306 display(128 /* OLED display width, in pixels*/, 64 /* OLED disp
 
 
 CRGB leds[47];
+=======
+// PWM input: Limit switches
+const int xLimit = 3;
+const int zLimit = 4;
+>>>>>>> 842c6766ff0c1834fe4a9ceab3010c9ede4960b6
 
 // Digital output: Motors
 // Motor 1 (Y axis; claw lift) pins
@@ -134,6 +156,7 @@ long intervalIdle = 2000; // rate of blink for 'push start to begin'
 long previousMillis = 0;
 
 void setup(){
+<<<<<<< HEAD
     Serial.begin(9600);
     setTime(01, 01, 00, 9, 9, 1999); // (Hour, minute, second, day, month, year)
 
@@ -212,10 +235,27 @@ void setup(){
     for (byte i = 0; i < 6; i++) {
         key.keyByte[i] = 0xFF;
     }
+=======
+    // Motor 2 (X axis; claw gantry) pins
+    pinMode(motor2Out1, 0x1);
+    pinMode(motor2Out2, 0x1);
+    pinMode(motor2Speed, 0x1); // Speed control, 0-255
+    // Motor 3 (Z axis; lower gantry) pins
+    pinMode(motor3Out1, 0x1);
+    pinMode(motor3Out2, 0x1);
+    pinMode(motor3Speed, 0x1); // Speed control, 0-255
+    // Motor 4 (Z axis; lower gantry) pins
+    pinMode(motor4Out1, 0x1);
+    pinMode(motor4Out2, 0x1);
+    pinMode(motor4Speed, 0x1); // Speed control, 0-255
+>>>>>>> 842c6766ff0c1834fe4a9ceab3010c9ede4960b6
 
+    pinMode(xLimit, 0x0);
+    pinMode(zLimit, 0x0);
 }
 
 void loop(){
+<<<<<<< HEAD
 
     // Idle
     // -----------------------------------------------------------------------------------------
@@ -315,12 +355,21 @@ void runGame(){
             Serial.println("DOWN");
 
         } else if(digitalRead(joystickBck) == 0x0){
+=======
+    returnToHome();
+}
+
+void returnToHome(){
+    while(digitalRead(xLimit) == 0x1 || digitalRead(zLimit) == 0x1){
+        if(digitalRead(xLimit) == 0x1){
+>>>>>>> 842c6766ff0c1834fe4a9ceab3010c9ede4960b6
             digitalWrite(motor3Out1, 0x0); // MOTOR 1 FORWARD OFF
             digitalWrite(motor3Out2, 0x1); // REVERSE ON
             digitalWrite(motor3Speed, 255); // SPEED MAX
             digitalWrite(motor4Out1, 0x1); // MOTOR 2 FORWARD ON
             digitalWrite(motor4Out2, 0x0); // REVERSE OFF
             digitalWrite(motor4Speed, 255); // SPEED MAX
+<<<<<<< HEAD
             Serial.println("UP");
 
         } else if(digitalRead(joystickLeft) == 0x0){
@@ -677,4 +726,17 @@ int cardCheck(){
     for (int j = 0 ; j < 16 ; j++){
       Serial.write (readCardValue[j]);
     }
+=======
+            Serial.println("RETURNING TO Z HOME");
+        }
+        if(digitalRead(zLimit) == 0x1){
+            digitalWrite(motor2Out1, 0x0); // MOTOR 1 FORWARD OFF
+            digitalWrite(motor2Out2, 0x1); // REVERSE ON
+            digitalWrite(motor2Speed, 255); // SPEED MAX
+            Serial.println("RETURNING TO X HOME");
+        }
+    }
+
+    Serial.println("WELCOME HOME");
+>>>>>>> 842c6766ff0c1834fe4a9ceab3010c9ede4960b6
 }

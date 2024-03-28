@@ -2,6 +2,10 @@
     "configuration": "cpu=atmega2560",
     "board": "arduino:avr:mega",
     "port": "COM4",
+<<<<<<< HEAD
     "sketch": "final\\full-final\\full-final.ino",
+=======
+    "sketch": "test\\hometest\\hometest.ino",
+>>>>>>> 842c6766ff0c1834fe4a9ceab3010c9ede4960b6
     "output": "ArduinoOutput"
 }
