@@ -46,7 +46,7 @@ void setup(){
     display.println("MECHANEKO");
     display.setTextSize(1);
     display.setCursor(14, 44); 
-    display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
+    display.setTextColor(SSD1306_WHITE); 
     display.println("OUT OF SERVICE :(");
     display.display();
 

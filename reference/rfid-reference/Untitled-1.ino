@@ -1,0 +1,3 @@
+if(readbackblock[1] < 1 && readbackblock[2] < 1 && readbackblock[3] < 1 && readbackblock[4] < 1 && readbackblock[5] < 1 && readbackblock[6] < 1 && readbackblock[7] < 1 && readbackblock[8] < 1 && readbackblock[9] < 1 && readbackblock[10] < 1 && readbackblock[11] < 1 && readbackblock[12] < 1 && readbackblock[13] < 1 && readbackblock[14] < 1 && readbackblock[15] < 1 && readbackblock[16] < 1){
+    Serial.println("EMPTY");
+}

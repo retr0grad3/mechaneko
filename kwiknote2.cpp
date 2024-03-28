@@ -1,6 +1,3 @@
-#include <Arduino.h>
-#line 1 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino"
-
 /*
 
 Claw machine designed by MECHANEKO.
@@ -12,7 +9,6 @@ mechaneko.carrd.co
 
 */
 
-#include <FastLED.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -29,16 +25,8 @@ mechaneko.carrd.co
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,
   OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
-// Output: RGB strip
-#define DATA_PIN 7
-#define NUM_LEDS 47
-CRGB leds[NUM_LEDS];
+int time = 3;
 
-#line 35 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino"
-void setup();
-#line 62 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino"
-void loop();
-#line 35 "C:\\Users\\kebin\\Documents\\GitHub\\mechaneko\\final\\outofservice-final\\outofservice-final.ino"
 void setup(){
     // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
     if(!display.begin(SSD1306_SWITCHCAPVCC)) {
@@ -46,21 +34,21 @@ void setup(){
         for(;;); // Don't proceed, loop forever
     }
 
-    display.clearDisplay();
+    /*display.clearDisplay();
     display.setTextSize(2);
     display.setCursor(12, 22);    
     display.setTextColor(SSD1306_WHITE);
-    display.println("MECHANEKO");
-    display.setTextSize(1);
-    display.setCursor(14, 44); 
-    display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
-    display.println("OUT OF SERVICE :(");
+    display.println(F("TIME: "));
+    display.print(time);
+    display.display(); */
+
+    display.clearDisplay();
+    display.setTextSize(2);             // Normal 1:1 pixel scale
+    display.setTextColor(SSD1306_WHITE);        // Draw white text
+    display.setCursor(12, 22);             // Start at top-left corner
+    display.print(F("Time: "));
+    display.print(4-time);
     display.display();
-
-    FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
-
-    fill_solid(leds, NUM_LEDS, CRGB::CRGB(167, 75, 208));
-    FastLED.show();
 
     Serial.begin(9600);
 

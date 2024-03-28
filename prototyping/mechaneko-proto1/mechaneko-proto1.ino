@@ -12,7 +12,7 @@ mechaneko.carrd.co
 
 
 // Include header files
-#include <Time.h>
+#include <TimeLib.h>
 #include <Servo.h>
 #include <FastLED.h>
 #include <SPI.h>
@@ -20,10 +20,6 @@ mechaneko.carrd.co
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <MFRC522.h>
-
-// Declare functions
-void joystickCtrl();
-void buttonPressed();
 
 /* 
  * Set pinout values
@@ -62,6 +58,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,
 // Output: RGB strip
 #define DATA_PIN 6
 #define NUM_LEDS 10 // set to real value
+CRGB leds[NUM_LEDS];
 
 // Digital output: Motors
 // Motor 1 (Y axis; claw lift) pins
@@ -163,39 +160,13 @@ void loop() {
 
         display.clearDisplay();
         display.setTextSize(2);             // Normal 1:1 pixel scale
-        display.setCursor(14,24);    
-        display.setTextColor(SSD1306_BLACK, SSD1306_WHITE); // Draw 'inverse' text
-        display.println("GAME OVER");
-        display.display();
-
-        delay(1000);
-
-        display.clearDisplay();
-        display.setTextSize(2);             // Normal 1:1 pixel scale
-        display.setCursor(14,24);    
+        display.setCursor(12,22);    
         display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
         display.println("GAME OVER");
-        display.display();
-
-        delay(1000);
-
-        display.clearDisplay();
-        display.setTextSize(2);             // Normal 1:1 pixel scale
-        display.setCursor(14,24);    
-        display.setTextColor(SSD1306_BLACK, SSD1306_WHITE); // Draw 'inverse' text
+        display.setTextSize(1);             // Normal 1:1 pixel scale
+        display.setCursor(14,44);
         display.println("Tap card to play");
         display.display();
-
-        delay(1000);
-
-        display.clearDisplay();
-        display.setTextSize(2);             // Normal 1:1 pixel scale
-        display.setCursor(14,24);    
-        display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
-        display.println("Tap card to play");
-        display.display();
-
-        delay(1000);
 
         runGame();
         returnToHome();
@@ -203,6 +174,16 @@ void loop() {
     }
     
     if(second() == timeLimit){
+        display.clearDisplay();
+        display.setTextSize(2);             // Normal 1:1 pixel scale
+        display.setCursor(14,24);    
+        display.setTextColor(SSD1306_WHITE); // Draw 'inverse' text
+        display.println("Time's Up");
+        display.display();
+
+        clawServo.write(55);
+        delay(1000);
+        clawServo.write(105);
         returnToHome();
 
     }
@@ -231,7 +212,7 @@ void loop() {
 }
 
 void runGame(){
-    display.ClearDisplay();
+    display.clearDisplay();
 
     setTime(01, 01, 00, 9, 9, 1999); // reset time to validate gameplay
 
@@ -242,7 +223,7 @@ void runGame(){
         continueGame = 1;
         joystickCtrl();
 
-        if(digitalRead(multiButton == LOW){ // button pressed, break loop
+        if(digitalRead(multiButton == LOW)){ // button pressed, break loop
             break;
         }
 

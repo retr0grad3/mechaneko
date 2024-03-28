@@ -30,21 +30,6 @@
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
 MFRC522::MIFARE_Key key;
 
-// Denotes the block number being written/read to/from
-int block = 13;
-
-// Arrays with card values
-byte normNewCardValue[16] = {"1 USE; 1 TRY"};
-/*byte normUseTwo[16] = {"2 USE; VOID"};
-byte normNewCardValue[16] = {"1 USE; 3 TRY"};
-byte normUseTwo[16] = {"2 USE; 2 TRIES"};
-byte normUseThree[16] = {"3 USE; 1 TRY"};
-byte normUseFour[16] = {"4 USE; VOID"};
-byte clearCardValue[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};*/
-
-// Array to read back card value
-byte readCardValue[16];
-
 void setup() {
     Serial.begin(9600); // Initialize serial communications with the PC
     while (!Serial);    // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
@@ -97,61 +82,3 @@ void dump_byte_array(byte *buffer, byte bufferSize) {
         Serial.print(buffer[i], HEX);
     }
 }
-
-int writeBlock(int blockNumber, byte arrayAddress[]){
-
-  // this makes sure that we only write into data blocks. Every 4th block is a trailer block for the access/security info.
-  int largestModulo4Number = blockNumber / 4 * 4;
-  int trailerBlock = largestModulo4Number + 3; //determine trailer block for the sector
-  if (blockNumber > 2 && (blockNumber + 1) % 4 == 0) {
-    Serial.print(blockNumber);
-    Serial.println("This is a trailer block:");
-    return 2;
-  }
-
-  Serial.print(blockNumber);
-  Serial.println(" This is a data block:");
-
-  // authentication of the desired block for access
-  byte status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &key, &(mfrc522.uid));
-  if (status != MFRC522::STATUS_OK) {
-    Serial.print("PCD_Authenticate() failed: ");
-    Serial.println(mfrc522.GetStatusCodeName(status));
-    return 3; // return "3" as error message
-  }
-
-  // writing the block
-  status = mfrc522.MIFARE_Write(blockNumber, arrayAddress, 16);
-  // status = mfrc522.MIFARE_Write(9, value1Block, 16);
-  if (status != MFRC522::STATUS_OK) {
-    Serial.print("MIFARE_Write() failed: ");
-    Serial.println(mfrc522.GetStatusCodeName(status));
-    return 4; // return "4" as error message
-  }
-  Serial.println("block written");
-}
-
-int readBlock(int blockNumber, byte arrayAddress[])
-{
-  int largestModulo4Number = blockNumber / 4 * 4;
-  int trailerBlock = largestModulo4Number + 3; //determine trailer block for the sector
-
-  //authentication of the desired block for access
-  byte status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &key, &(mfrc522.uid));
-
-  if (status != MFRC522::STATUS_OK) {
-    Serial.print("PCD_Authenticate() failed (read): ");
-    Serial.println(mfrc522.GetStatusCodeName(status));
-    return 3;//return "3" as error message
-  }
-
-  //reading a block
-  byte buffersize = 18;//we need to define a variable with the read buffer size, since the MIFARE_Read method below needs a pointer to the variable that contains the size...
-  status = mfrc522.MIFARE_Read(blockNumber, arrayAddress, &buffersize);//&buffersize is a pointer to the buffersize variable; MIFARE_Read requires a pointer instead of just a number
-  if (status != MFRC522::STATUS_OK) {
-    Serial.print("MIFARE_read() failed: ");
-    Serial.println(mfrc522.GetStatusCodeName(status));
-    return 4;//return "4" as error message
-  }
-  Serial.println("block was read");
-} 

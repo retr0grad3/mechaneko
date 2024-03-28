@@ -253,7 +253,7 @@ void lowerClaw(){
     digitalWrite(motor1Out1, LOW); 
     digitalWrite(motor1Out2, HIGH);
     digitalWrite(motor1Speed, 255); 
-    delay(2500);
+    delay(2750);
 
     Serial.println("STOPPING AT TOP");
     digitalWrite(motor1Out1, LOW); 
